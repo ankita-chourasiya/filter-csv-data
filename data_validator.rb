@@ -1,6 +1,7 @@
 # data_validator.rb
 
 require 'geocoder'
+require 'byebug'
 
 class DataValidator
   def self.valid_email?(email)    
@@ -19,8 +20,8 @@ class DataValidator
     !(last_name.nil? || last_name.empty?)
   end
 
-  def self.valid_geo_location(street, city, state, country)
-    address = [street, city, state, country].compact.join(', ')    
+  def self.valid_geo_location(city, state, country)
+    address = [city, state, country].compact.join(', ')    
     !Geocoder.search(address).empty?
   end
 end

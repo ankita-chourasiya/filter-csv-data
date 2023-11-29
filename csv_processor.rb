@@ -11,9 +11,8 @@ class CSVProcessor
       CSV.foreach(input_file_path, headers: true) do |row|        
         total += 1
         
-        if DataValidator.valid_email?(row['Email']) && DataValidator.valid_postcode?(row['Residential Address Postcode']) && DataValidator.valid_postcode?(row['Postal Address Postcode']) && DataValidator.valid_first_name?(row['First Name']) && DataValidator.valid_last_name?(row['Last Name']) 
-        # && 
-        # DataValidator.valid_geo_location(row['Residential Address Street'], row['Residential Address Locality'], row['Residential Address State'], row['Residential Address Postcode'])
+        if DataValidator.valid_email?(row['Email']) && DataValidator.valid_postcode?(row['Residential Address Postcode']) && DataValidator.valid_postcode?(row['Postal Address Postcode']) && DataValidator.valid_first_name?(row['First Name']) && DataValidator.valid_last_name?(row['Last Name']) && 
+        DataValidator.valid_geo_location(row['Residential Address Locality'], row['Residential Address State'], row['Residential Address Postcode'])
           output_csv << row
         else
           puts "Invalid row: #{row}"
